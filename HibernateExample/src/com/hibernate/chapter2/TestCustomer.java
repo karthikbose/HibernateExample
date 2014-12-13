@@ -1,19 +1,20 @@
-package com.hibernate.chapter1;
+package com.hibernate.chapter2;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
-public class TestEmployee {
+public class TestCustomer {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 
 		AnnotationConfiguration config = new AnnotationConfiguration();
-		config.addAnnotatedClass(Employee.class);
+		config.addAnnotatedClass(Customer.class);
 		config.configure("myHibernateConfig.xml");
 		
 		new SchemaExport(config).create(true, true);
@@ -23,31 +24,16 @@ public class TestEmployee {
 		
 		sess.beginTransaction();
 		
-		{
-			Employee emp = new Employee();
-			emp.setEmpName("Karthik");
-			emp.setAge(30);
-			
-			sess.save(emp);
-		}
-
-		{
-			Employee emp = new Employee();
-			emp.setEmpName("Deepak");
-			emp.setAge(25);
-			
-			sess.save(emp);
-		}
-
-		{
-			Employee emp = new Employee();
-			emp.setEmpName("Paul");
-			emp.setAge(45);
-			
-			sess.save(emp);
-		}
-
+		Customer cus = new Customer();
+		cus.setAddress("TR.Nagar");
+		cus.setCity("Bangalore");
+		cus.setCusName("Karthik");
+		cus.setPhoneNo("99872");
+		
+		sess.save(cus);
+		
 		sess.getTransaction().commit();
 		
 	}
+
 }
